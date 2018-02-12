@@ -1,0 +1,72 @@
+<div *ngIf="waiting">
+  お待ちください……
+</div>
+<div *ngIf="!waiting">
+  <div [ngSwitch]="state">
+    <div *ngSwitchCase="'ReadQRCode'">
+      <p>相手の画面に表示されているQRコードを読みとってください</p>
+      <input type="file" #qrcodeInput name="qrcodeInput" id="qrcodeInput" accept="image/*" capture="camera" style="display:none;"(change)="onChangeQRCodeInput($event)"/>
+      <button (click)="propagateToQrCodeInput($event)">カメラを起動</button>
+      <button (click)="cancelOnQrCode($event)">やめる</button>
+    </div>
+    <div *ngSwitchCase="'ReadBarcode'">
+      <p>借りたい書籍のバーコードを読み取ってください</p>
+      <input type="file" #barcodeInput name="barcodeInput" id="barcode-input" accept="image/*" capture="camera" style="display:none;"(change)="onChangeBarcodeInput($event)"/>
+      <button (click)="propagateToBarcodeInput($event)">カメラを起動</button>
+      <button (click)="cancelOnBarcode($event)">やめる</button>
+    </div>
+    <div *ngSwitchCase="'ShowProposal'">
+      <div>
+        <p>貸りる相手</p>
+        <table>
+          <tr>
+            <td>名前</td>
+            <td>kbc14a12</td>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>kbc14a12</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <p>借りる本</p>
+        <table>
+          <tr>
+            <td>タイトル</td>
+            <td>みんなのPython 第4版</td>
+          </tr>
+          <tr>
+            <td>サムネイル</td>
+            <td><img src="http://books.google.com/books/content?id=FS7EDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"></td>
+          </tr>
+          <tr>
+            <td>著者</td>
+            <td>柴田淳</td>
+          </tr>
+          <tr>
+            <td>出版日</td>
+            <td>2016-12-21</td>
+          </tr>
+          <tr>
+            <td>isbn10</td>
+            <td>479738946X</td>
+          </tr>
+          <tr>
+            <td>isbn13</td>
+            <td>9784797389463</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <p>こちらでよろしいですか？</p>
+        <button (click)="confirmProposal($event)">これにする</button>
+        <button (click)="cancelOnProposal($event)">やめる</button>
+      </div>
+    </div>
+    <div *ngSwitchCase="'confirmProposal'">
+      <p>取引が完了しました</p>
+      <a href="http://google.com">戻る</a>
+    </div>
+  </div>
+</div>
