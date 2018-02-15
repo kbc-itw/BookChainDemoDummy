@@ -10,10 +10,10 @@ export class RentaldummyComponent implements OnInit {
   @ViewChild('qrcodeInput') qrcodeInput: ElementRef;
   @ViewChild('barcodeInput') barcodeInput: ElementRef;
 
-  private webSocket: WebSocket;
-  private state: 'ReadQRCode' | 'ReadBarcode' | 'ShowProposal' | 'confirmProposal';
-  private waiting: boolean;
-  private purpose: string;
+  public webSocket: WebSocket;
+  public state: 'ReadQRCode' | 'ReadBarcode' | 'ShowProposal' | 'confirmProposal';
+  public waiting: boolean;
+  public purpose: string;
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class RentaldummyComponent implements OnInit {
     setTimeout(() => {
       this.waiting = false;
       this.state = 'ReadBarcode';
-    }, 500);
+    }, 1500);
   }
 
   private onChangeBarcodeInput(uploadEvent: any) {
@@ -34,7 +34,7 @@ export class RentaldummyComponent implements OnInit {
     setTimeout(() => {
       this.waiting = false;
       this.state = 'ShowProposal';
-    }, 1000);
+    }, 3000);
   }
 
   private confirmProposal(event: any) {
@@ -42,7 +42,7 @@ export class RentaldummyComponent implements OnInit {
     setTimeout(() => {
       this.waiting = false;
       this.state = 'confirmProposal';
-    }, 1500);
+    }, 4000);
   }
 
   private propagateToQrCodeInput(event: any) {
@@ -61,7 +61,7 @@ export class RentaldummyComponent implements OnInit {
     setTimeout(() => {
       this.waiting = false;
       this.state = 'ReadQRCode';
-    }, 700);
+    }, 1500);
   }
 
   private cancelOnProposal(event: any) {
@@ -69,7 +69,7 @@ export class RentaldummyComponent implements OnInit {
     setTimeout(() => {
       this.waiting = false;
       this.state = 'ReadBarcode';
-    }, 700);
+    }, 1500);
   }
 
 
